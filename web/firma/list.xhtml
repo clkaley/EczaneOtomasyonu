@@ -9,29 +9,29 @@
     <ui:define name="content">
         <div class="container mt-4">
             <h:form>
-                <h:commandButton styleClass="btn btn-outline-primary" action="/personel/create" value="Yeni Personel Ekle"/>
+                <h:commandButton styleClass="btn btn-outline-primary" action="/firma/create" value="Yeni Firma Ekle"/>
                 <hr/>
-                <h:dataTable styleClass="table table-hover" value="#{personelBean.read}" var="i">
+                <h:dataTable styleClass="table table-hover" value="#{firmaBean.read}" var="i">
 
                     <h:column>
                         <f:facet name="header">ID</f:facet>
-                            #{i.personel_id}
+                            #{i.firma_id}
                     </h:column>
                     <h:column>
                         <f:facet name="header">NAME</f:facet>
-                            #{i.personel_name}
+                            #{i.firma_name}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">TC NO</f:facet>
-                            #{i.personel_tc}
+                        <f:facet name="header">NO</f:facet>
+                            #{i.firma_no}
                     </h:column>
                     <h:column>
                         <f:facet name="header">TELEFON</f:facet>
-                            #{i.personel_telefon}
+                            #{i.firma_telefon}
                     </h:column>
                      <h:column>
-                        <f:facet name="header">MAAS</f:facet>
-                            #{i.personel_maas}
+                        <f:facet name="header">ADRES</f:facet>
+                            #{i.firma_adres}
                     </h:column>
                     <h:column>
                         <f:facet name="header">CREATED</f:facet>
@@ -40,8 +40,8 @@
                     <h:column>
                         <f:facet name="header">ADMINISTRATION</f:facet>
                         <div class="btn-group" role="group" >
-                        <h:commandButton styleClass="btn btn-warning" action="#{personelBean.updateForm(i)}" value="UPDATE"/>
-                        <h:commandButton styleClass="btn btn-danger" action="#{personelBean.delete(i)}" value="DELETE"/>
+                        <h:commandButton styleClass="btn btn-warning" action="#{firmaBean.updateForm(i)}" value="UPDATE"/>
+                        <h:commandButton styleClass="btn btn-danger" action="#{firmaBean.delete(i)}" value="DELETE"/>
                         </div>
                     </h:column>
                 </h:dataTable>
