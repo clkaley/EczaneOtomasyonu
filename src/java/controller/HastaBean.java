@@ -44,6 +44,7 @@ public class HastaBean implements Serializable {
 
     public String update() {
         this.getDao().update(entity);
+        this.entity=new Hasta();
         return "/hasta/list";
     }
 

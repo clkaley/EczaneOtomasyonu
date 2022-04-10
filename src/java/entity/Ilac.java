@@ -117,7 +117,10 @@ public class Ilac {
             return false;
         }
         final Ilac other = (Ilac) obj;
-        return this.ilac_id == other.ilac_id;
+        if(this.ilac_id !=other.ilac_id){
+            return false;
+        }
+        return true;
 
     }
     

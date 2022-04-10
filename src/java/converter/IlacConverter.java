@@ -40,7 +40,7 @@ public class IlacConverter implements Converter{
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object t) {
        Ilac i = (Ilac)t;
-       return i.getName();
+       return String.valueOf(i.getIlac_id());
     }
     
 }
