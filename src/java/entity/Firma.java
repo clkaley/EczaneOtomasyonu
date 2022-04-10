@@ -12,7 +12,7 @@ public class Firma {
     private String firma_adres;
     private Timestamp created;
     private Timestamp updated;
-
+///firmaaaaa
     public Firma() {
     }
 

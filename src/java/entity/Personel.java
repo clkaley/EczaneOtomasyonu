@@ -12,6 +12,8 @@ public class Personel {
     private Timestamp created;
     private Timestamp updated;
 
+    
+    ///personellllll
     public Personel() {
     }
 
