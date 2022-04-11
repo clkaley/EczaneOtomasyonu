@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/admin.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+        <div class="container mt-4">
+            <h:form>
+                <div class="form-group">
+                    <label >Hasta Ad Soyad</label>
+                    <h:inputText styleClass="form-control" value="#{hastaBean.entity.hasta_name}" />
+                </div>
+                <div class="form-group">
+                    <label >Hasta TC NO</label>
+                    <h:inputText styleClass="form-control" value="#{hastaBean.entity.hasta_tc}" />
+                </div>
+                <div class="form-group">
+                    <label >Ilac</label>
+                    <br/>
+                    <h:selectOneMenu value="#{hastaBean.entity.ilac}" converter="ilacConverter">
+                        <f:selectItems value="#{ilacBean.read}" var="i" itemLabel="#{i.name}" itemValue="#{i}"/>
+                    </h:selectOneMenu>
+                </div>
+                <div class="form-group">
+                    <h:commandButton styleClass="btn btn-success mt-2" action="#{hastaBean.update()}" value="UPDATE"/>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+
