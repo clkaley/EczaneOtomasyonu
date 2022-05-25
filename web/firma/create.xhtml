@@ -9,19 +9,23 @@
             <h:form>
                  <div class="form-group">
                     <label >Name</label>
-                    <h:inputText styleClass="form-control" value="#{firmaBean.entity.firma_name}" />
+                    <h:inputText id="name" styleClass="form-control" value="#{firmaBean.entity.firma_name}" required="true" requiredMessage="Firma isim alanı boş bırakılamaz !"/>
+                    <h:message style="color: red; " for="name"/>
                 </div>
                 <div class="form-group">
                     <label >No</label>
-                    <h:inputText styleClass="form-control" value="#{firmaBean.entity.firma_no}" />
+                    <h:inputText id="no" styleClass="form-control" value="#{firmaBean.entity.firma_no}" required="true" requiredMessage="Firma no alanı boş bırakılamaz !"/>
+                    <h:message style="color: red; " for="no"/>
                 </div>
                 <div class="form-group">
                     <label >TELEFON</label>
-                    <h:inputText styleClass="form-control" value="#{firmaBean.entity.firma_telefon}" />
+                    <h:inputText id="telefon" validator="#{firmaBean.validateTelefon}" styleClass="form-control" value="#{firmaBean.entity.firma_telefon}" />
+                    <h:message style="color: red; " for="telefon"/>
                 </div>
                 <div class="form-group">
                     <label >ADRES</label>
-                    <h:inputText styleClass="form-control" value="#{firmaBean.entity.firma_adres}" />
+                    <h:inputText id="adres" styleClass="form-control" value="#{firmaBean.entity.firma_adres}" required="true" requiredMessage="Firma adres alanı boş bırakılamaz !" />
+                    <h:message style="color: red; " for="adres"/>
                 </div>
                 <div class="form-group">
                     <h:commandButton styleClass="btn btn-success mt-2" action="#{firmaBean.create()}" value="CREATE"/>

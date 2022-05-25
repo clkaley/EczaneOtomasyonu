@@ -9,20 +9,22 @@
         <div class="container mt-4">
             <h:form>
                 <div class="form-group">
+
                     <label >Odeme Toplam</label>
-                    <h:inputText styleClass="form-control" value="#{odemeBean.entity.odeme_toplam}" />
+                    <h:inputText styleClass="form-control" value="#{odemeBean.entity.odeme_toplam}" required="true" requiredMessage="Ödeme alanı boş bırakılamaz !" />
                 </div>
                 <div class="form-group">
                     <label >Odeme Turu</label>
-                    <h:inputText styleClass="form-control" value="#{odemeBean.entity.odeme_turu}" />
+                    <h:inputText styleClass="form-control" value="#{odemeBean.entity.odeme_turu}" required="true" requiredMessage="Ödeme türü alanı boş bırakılamaz !"/>
                 </div>
                 <div class="form-group">
-                    <label >Ilac</label>
-                    <br/>
-                    <h:selectOneMenu value="#{odemeBean.entity.ilac}" converter="ilacConverter">
-                        <f:selectItems value="#{ilacBean.read}" var="i" itemLabel="#{i.name}" itemValue="#{i}"/>
-                    </h:selectOneMenu>
+                    <label >Firma ID</label>
+                    <h:selectManyMenu value="#{odemeBean.entity.firmais}" converter="firmaConverter">
+                        <f:selectItems value="#{firmaBean.read}" var="f" itemLabel="#{f.firma_name}" itemValue="#{f}" />
+                    </h:selectManyMenu>
                 </div>
+
+
                 <div class="form-group">
                     <h:commandButton styleClass="btn btn-success mt-2" action="#{odemeBean.update()}" value="UPDATE"/>
                 </div>

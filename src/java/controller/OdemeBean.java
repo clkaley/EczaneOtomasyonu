@@ -16,9 +16,8 @@ public class OdemeBean implements Serializable {
 
     private OdemeDAO dao;
     private Odeme entity;
-
+    
    
-
     //CRUD
     public String create() {
         this.entity.setCreated(new Timestamp(System.currentTimeMillis()));
@@ -38,6 +37,7 @@ public class OdemeBean implements Serializable {
 
     public String update() {
         this.getDao().update(entity);
+        this.entity = new Odeme();
         return "/odeme/list";
     }
 

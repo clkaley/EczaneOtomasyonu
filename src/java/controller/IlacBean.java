@@ -8,6 +8,10 @@ import dao.IlacDAO;
 import entity.Ilac;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.ValidatorException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -80,5 +84,16 @@ public class IlacBean implements Serializable {
         this.entity = entity;
     }
     
+     public boolean validateName(FacesContext context, UIComponent cmp, Object value) throws ValidatorException{
+        String v = (String) value;
+        
+        if(v.isEmpty()) {
+            throw new ValidatorException(new FacesMessage("Lütfen ilaç ismini giriniz !"));
+        }else if (v.length() < 4){
+             throw new ValidatorException(new FacesMessage("Name alanı en az 4 karakter olmalıdır !"));
+        }
+        
+        return true;
+    }
     
 }

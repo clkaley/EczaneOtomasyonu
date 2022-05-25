@@ -14,18 +14,23 @@
             <div class="bg-light py-1">
                 <div class="container">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <h:commandLink styleClass="nav-link" action="/index" value="PHΛRMΛCY"/>
+                        <h:commandLink styleClass="nav-link" action="/index?faces-redirect=true" value="PHΛRMΛCY"/>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                            <div class="navbar-nav ml-auto ">
+                                <h:commandLink styleClass="nav-link"  action="/ilac/list?faces-redirect=true" value="ILAC" />
+                                <h:commandLink styleClass="nav-link"  action="/hasta/list?faces-redirect=true" value="HASTA" />
+                                <h:commandLink styleClass="nav-link"  action="/personel/list?faces-redirect=true" value="PERSONEL" />
+                                <h:commandLink styleClass="nav-link"  action="/firma/list?faces-redirect=true" value="FIRMA" />
+                                <h:commandLink styleClass="nav-link"  action="/odeme/list?faces-redirect=true" value="ODEME" />
+
+                            </div>
                             <div class="navbar-nav ml-auto">
-                                <h:commandLink styleClass="nav-link"  action="/ilac/list" value="ILAC" />
-                                <h:commandLink styleClass="nav-link"  action="/hasta/list" value="HASTA" />
-                                 <h:commandLink styleClass="nav-link"  action="/personel/list" value="PERSONEL" />
-                                 <h:commandLink styleClass="nav-link"  action="/firma/list" value="FIRMA" />
-                                  <h:commandLink styleClass="nav-link"  action="/odeme/list" value="ODEME" />
-                                       <h:commandLink styleClass="nav-link"  action="/alis/list" value="ALIS" />
+                                <h:commandLink styleClass="nav-link"  action="/login/login?faces-redirect=true" value="LOGIN" />
+                                <h:commandLink styleClass="nav-link"  action="/login/logout?faces-redirect=true" value="LOGOUT" />
+                              
                             </div>
                         </div>
                     </nav>

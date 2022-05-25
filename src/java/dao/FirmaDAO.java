@@ -16,7 +16,7 @@ public class FirmaDAO extends DBConnection {
         
         try {
             Statement st = this.connect().createStatement();
-            ResultSet rs = st.executeQuery("select * from firma where firma_id="+id);
+            ResultSet rs = st.executeQuery("select * from dagiticifirma where firma_id="+id);
             rs.next();
             
             l = new Firma(rs.getInt("firma_id"), rs.getString("firma_name"), rs.getString("firma_no"), rs.getString("firma_telefon"), rs.getString("firma_adres") ,rs.getTimestamp("created"));

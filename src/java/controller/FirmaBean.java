@@ -5,6 +5,10 @@ import dao.FirmaDAO;
 import entity.Firma;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.ValidatorException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -16,6 +20,7 @@ public class FirmaBean implements Serializable {
     private FirmaDAO dao;
     private Firma entity;
     
+  
 
     //CRUD işlemleri
     public String create(){
@@ -24,9 +29,7 @@ public class FirmaBean implements Serializable {
         this.entity = new Firma();
         return "/firma/list";
     }
-    public Firma getById(int id){
-        return this.getDao().getById(id);
-    }
+    
     public List<Firma> getRead() {
         return this.getDao().read();
     }
@@ -73,5 +76,16 @@ public class FirmaBean implements Serializable {
         this.entity = entity;
     }
     
+     public boolean validateTelefon(FacesContext context, UIComponent cmp, Object value) throws ValidatorException {
+        String v = (String) value;
+
+        if (v.isEmpty()) {
+            throw new ValidatorException(new FacesMessage("Telefon alanı boş bırakılamaz !"));
+        } else if (v.length() < 11) {
+            throw new ValidatorException(new FacesMessage("Telefon alanı en az 11 karakter olmalıdır !"));
+        }
+
+        return true;
+    }
     
 }

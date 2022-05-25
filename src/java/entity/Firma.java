@@ -98,6 +98,36 @@ public class Firma {
     public void setUpdated(Timestamp updated) {
         this.updated = updated;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 59 * hash + this.firma_id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Firma other = (Firma) obj;
+         if(this.firma_id == other.firma_id){
+             return false;
+         }
+         return true;
+    }
+
+    @Override
+    public String toString() {
+        return  firma_name ;
+    }
     
     
     

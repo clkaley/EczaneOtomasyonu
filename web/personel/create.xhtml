@@ -7,21 +7,25 @@
     <ui:define name="content">
         <div class="container mt-4">
             <h:form>
-                 <div class="form-group">
-                    <label >Name</label>
-                    <h:inputText styleClass="form-control" value="#{personelBean.entity.personel_name}" />
+                <div class="form-group">
+                    <label>Name</label>
+                    <h:inputText id="name" styleClass="form-control" value="#{personelBean.entity.personel_name}" required="true" requiredMessage="Personel ad soyad alanı boş bırakılamaz !" />
+                    <h:message style="color: red; " for="name"/>
                 </div>
                 <div class="form-group">
                     <label >TC</label>
-                    <h:inputText styleClass="form-control" value="#{personelBean.entity.personel_tc}" />
+                    <h:inputText id="tcno" validator="#{personelBean.validateTcno}" styleClass="form-control" value="#{personelBean.entity.personel_tc}" />
+                    <h:message style="color: red; " for="tcno"/>
                 </div>
                 <div class="form-group">
                     <label >TELEFON</label>
-                    <h:inputText styleClass="form-control" value="#{personelBean.entity.personel_telefon}" />
+                    <h:inputText id="telefon" styleClass="form-control" validator="#{personelBean.validateTelefon}"  value="#{personelBean.entity.personel_telefon}" />
+                    <h:message style="color: red; " for="telefon"/>
                 </div>
                 <div class="form-group">
                     <label >MAAS</label>
-                    <h:inputText styleClass="form-control" value="#{personelBean.entity.personel_maas}" />
+                    <h:inputText id="maas" styleClass="form-control" value="#{personelBean.entity.personel_maas}" required="true" requiredMessage="Maaş alanın doldurulması zorunludur !"/>
+                    <h:message style="color: red; " for="maas"/>
                 </div>
                 <div class="form-group">
                     <h:commandButton styleClass="btn btn-success mt-2" action="#{personelBean.create()}" value="CREATE"/>

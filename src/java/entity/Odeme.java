@@ -1,37 +1,41 @@
-
 package entity;
 
 import java.sql.Timestamp;
-
+import java.util.List;
 
 public class Odeme {
+
     private int odeme_id;
     private String odeme_toplam;
     private String odeme_turu;
     private Timestamp created;
     private Timestamp updated;
+    private List<Firma> firmais;
 
     public Odeme() {
     }
 
-    public Odeme(int odeme_id, String odeme_toplam, String odeme_turu, Timestamp created, Timestamp updated) {
+    public Odeme(int odeme_id, String odeme_toplam, String odeme_turu, List<Firma> frm, Timestamp created, Timestamp updated) {
         this.odeme_id = odeme_id;
         this.odeme_toplam = odeme_toplam;
         this.odeme_turu = odeme_turu;
+        this.firmais = frm;
         this.created = created;
         this.updated = updated;
     }
 
-    public Odeme(int odeme_id, String odeme_toplam, String odeme_turu, Timestamp created) {
+    public Odeme(int odeme_id, String odeme_toplam, String odeme_turu, List<Firma> frm, Timestamp created) {
         this.odeme_id = odeme_id;
         this.odeme_toplam = odeme_toplam;
         this.odeme_turu = odeme_turu;
+        this.firmais = frm;
         this.created = created;
     }
 
-    public Odeme(String odeme_toplam, String odeme_turu, Timestamp created) {
+    public Odeme(String odeme_toplam, String odeme_turu, List<Firma> frm, Timestamp created) {
         this.odeme_toplam = odeme_toplam;
         this.odeme_turu = odeme_turu;
+        this.firmais = frm;
         this.created = created;
     }
 
@@ -59,6 +63,14 @@ public class Odeme {
         this.odeme_turu = odeme_turu;
     }
 
+    public List<Firma> getFirmais() {
+        return firmais;
+    }
+
+    public void setFirmais(List<Firma> firmais) {
+        this.firmais = firmais;
+    }
+
     public Timestamp getCreated() {
         return created;
     }
@@ -74,8 +86,5 @@ public class Odeme {
     public void setUpdated(Timestamp updated) {
         this.updated = updated;
     }
-    
-    
-    
-    
+
 }

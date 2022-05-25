@@ -10,11 +10,13 @@
             <h:form>
                 <div class="form-group">
                     <label >Hasta Ad Soyad</label>
-                    <h:inputText styleClass="form-control" value="#{hastaBean.entity.hasta_name}" />
+                    <h:inputText id="name" styleClass="form-control" value="#{hastaBean.entity.hasta_name}" required="true" requiredMessage="Hasta ad soyad alanı boş bırakılamaz !"/>
+                    <h:message style="color: red; " for="name"/>
                 </div>
                 <div class="form-group">
                     <label >Hasta TC NO</label>
-                    <h:inputText styleClass="form-control" value="#{hastaBean.entity.hasta_tc}" />
+                    <h:inputText id="tcno" validator="#{hastaBean.validateTcno}" styleClass="form-control" value="#{hastaBean.entity.hasta_tc}" />
+                    <h:message style="color: red; " for="tcno"/>
                 </div>
                 <div class="form-group">
                     <label >Ilac</label>

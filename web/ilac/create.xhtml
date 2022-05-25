@@ -9,15 +9,18 @@
             <h:form>
                 <div class="form-group">
                     <label >Seri NO</label>
-                    <h:inputText styleClass="form-control" value="#{ilacBean.entity.seri_no}" />
+                    <h:inputText id="serino" styleClass="form-control" value="#{ilacBean.entity.seri_no}" required="true" requiredMessage="İlaç SERİ NO giriniz !" />
+                    <h:message style="color: red; " for="serino"/>
                 </div>
                 <div class="form-group">
                     <label >Name</label>
-                    <h:inputText styleClass="form-control" value="#{ilacBean.entity.name}" />
+                    <h:inputText id="name" validator="#{ilacBean.validateName}" styleClass="form-control" value="#{ilacBean.entity.name}" />
+                    <h:message style="color: red; " for="name"/>
                 </div>
                 <div class="form-group">
                     <label >Type</label>
-                    <h:inputText styleClass="form-control" value="#{ilacBean.entity.type}" />
+                    <h:inputText id="type" styleClass="form-control" value="#{ilacBean.entity.type}" required="true" requiredMessage="İlaç türünü belirtiniz !"/>
+                    <h:message style="color: red; " for="type"/>
                 </div>
                 <div class="form-group">
                     <h:commandButton styleClass="btn btn-success mt-2" action="#{ilacBean.create()}" value="CREATE"/>
