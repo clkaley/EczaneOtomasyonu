@@ -43,7 +43,25 @@ public class PersonelDAO extends DBConnection {
         List<Personel> list = new ArrayList<>();
         try {
             Statement st = this.connect().createStatement();
-            String query = "select * from personel order by personel_id asc";
+            String query = "select * from personel";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Personel tmp = new Personel(rs.getInt("personel_id"), rs.getString("personel_name"), rs.getString("personel_tc"), rs.getString("personel_telefon"), rs.getString("personel_maas") ,rs.getTimestamp("created"));
+                list.add(tmp);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
+    
+     public List<Personel> read(int page) {
+        List<Personel> list = new ArrayList<>();
+        int offset = (page-1)*5;
+        try {
+            Statement st = this.connect().createStatement();
+            String query = "select * from personel limit 5 offset " + offset ;
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Personel tmp = new Personel(rs.getInt("personel_id"), rs.getString("personel_name"), rs.getString("personel_tc"), rs.getString("personel_telefon"), rs.getString("personel_maas") ,rs.getTimestamp("created"));

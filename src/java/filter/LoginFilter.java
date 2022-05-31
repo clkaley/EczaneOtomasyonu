@@ -39,7 +39,7 @@ public class LoginFilter implements Filter {
         }
 
         if (user == null) {
-            if (url.contains("/login/logout") || url.contains("/ilac/list") || url.contains("/hasta/list") || url.contains("/personel/list") || url.contains("/firma/list") || url.contains("/odeme/list") ) {
+            if (url.contains("/login/logout") || url.contains("/ilac/list") || url.contains("/hasta/list") || url.contains("/personel/list") || url.contains("/firma/list") || url.contains("/odeme/list") || url.contains("/document/document") ) {
                  response.sendRedirect(request.getContextPath() + "/login/login.xhtml");
             } else {
                 fc.doFilter(sr, sr1);

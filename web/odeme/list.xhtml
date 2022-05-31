@@ -47,6 +47,12 @@
                         </div>
                     </h:column>
                 </h:dataTable>
+                <hr />
+                <h6>Page: #{odemeBean.page}/#{odemeBean.pageCount}</h6>
+                <div class="btn-group" role="group" >
+                    <h:commandButton styleClass="btn btn-outline-primary" action="#{odemeBean.prev()}" value="GERI"/>
+                    <h:commandButton styleClass="btn btn-outline-secondary" action="#{odemeBean.next()}" value="ILERI"/>
+                </div>
             </h:form>
         </div>
     </ui:define> 

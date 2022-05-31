@@ -60,6 +60,27 @@ public class HastaDAO extends DBConnection {
         }
         return list;
     }
+    public List<Hasta> read(int page) {
+        
+        int offset = (page-1)*5;
+        
+        List<Hasta> list = new ArrayList<>();
+        try {
+            Statement st = this.connect().createStatement();
+            String query = "select * from hasta limit 5 offset " + offset;
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Ilac i = this.getIdao().getById( rs.getInt("ilac_id"));
+                Hasta tmp = new Hasta(rs.getInt("hasta_id"), rs.getString("hasta_name"), rs.getString("hasta_tc"),i, rs.getTimestamp("created"));
+                list.add(tmp);
+            }
+            st.close();
+            rs.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
 
     public void update(Hasta i) {
         try {

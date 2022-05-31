@@ -26,7 +26,43 @@ public class HastaBean implements Serializable {
 
     private HastaDAO dao;
     private Hasta entity;
+    
+    private int page = 1;
+    private int pageCount = 0;
 
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageCount() {
+        List<Hasta> hastaList = this.getDao().read();
+        int size = hastaList.size();
+        pageCount = (int) Math.ceil(size / 5);
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+    
+    
+    public void prev() {
+        page--;
+        if(page < 1) {
+            page = this.getPageCount();
+        }
+    }
+    
+    public void next() {
+        page++;
+        if(page > this.getPageCount()) {
+            page = 1;
+        }
+    }
    
 
     //CRUD
@@ -38,7 +74,7 @@ public class HastaBean implements Serializable {
     }
 
     public List<Hasta> getRead() {
-        return this.getDao().read();
+        return this.getDao().read(page);
     }
 
     public String updateForm(Hasta i) {

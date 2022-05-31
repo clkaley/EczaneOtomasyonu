@@ -55,6 +55,23 @@ public class FirmaDAO extends DBConnection {
         }
         return list;
     }
+     public List<Firma> read(int page) {
+        List<Firma> list = new ArrayList<>();
+        int offset = (page-1)*5;
+        try {
+            Statement st = this.connect().createStatement();
+            String query = "select * from dagiticiFirma limit 5 offset " + offset;
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Firma tmp = new Firma(rs.getInt("firma_id"), rs.getString("firma_name"), rs.getString("firma_no"), rs.getString("firma_telefon"), rs.getString("firma_adres") ,rs.getTimestamp("created"));
+                list.add(tmp);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
 
     public void update(Firma i) {
         try {

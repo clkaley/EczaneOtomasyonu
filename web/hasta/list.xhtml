@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      template="/template/admin.xhtml">
-    
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/admin.xhtml">
+
     <ui:define name="content">
         <div class="container mt-4">
             <h:form>
@@ -36,13 +36,20 @@
                     <h:column>
                         <f:facet name="header">ADMINISTRATION</f:facet>
                         <div class="btn-group" role="group" >
-                        <h:commandButton styleClass="btn btn-warning" action="#{hastaBean.updateForm(i)}" value="UPDATE"/>
-                        <h:commandButton styleClass="btn btn-danger" action="#{hastaBean.delete(i)}" value="DELETE"/>
+                            <h:commandButton styleClass="btn btn-warning" action="#{hastaBean.updateForm(i)}" value="UPDATE"/>
+                            <h:commandButton styleClass="btn btn-danger" action="#{hastaBean.delete(i)}" value="DELETE"/>
                         </div>
                     </h:column>
+
                 </h:dataTable>
+                <hr />
+                <h6>Page: #{hastaBean.page}/#{hastaBean.pageCount}</h6>
+                <div class="btn-group" role="group" >
+                    <h:commandButton styleClass="btn btn-outline-primary" action="#{hastaBean.prev()}" value="GERI"/>
+                    <h:commandButton styleClass="btn btn-outline-secondary" action="#{hastaBean.next()}" value="ILERI"/>
+                </div>
             </h:form>
         </div>
-        </ui:define> 
+    </ui:define> 
 </ui:composition>
 

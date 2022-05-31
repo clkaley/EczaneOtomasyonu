@@ -1,6 +1,7 @@
 package controller;
 
 import dao.PersonelDAO;
+import entity.Hasta;
 import entity.Personel;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
@@ -18,6 +19,44 @@ public class PersonelBean implements Serializable {
 
     private PersonelDAO dao;
     private Personel entity;
+    
+        private int page = 1;
+    private int pageCount = 0;
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageCount() {
+        List<Personel> hastaList = this.getDao().read();
+        int size = hastaList.size();
+        pageCount = (int) Math.ceil(size / 5);
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+    
+    
+    public void prev() {
+        page--;
+        if(page < 1) {
+            page = this.getPageCount();
+        }
+    }
+    
+    public void next() {
+        page++;
+        if(page > this.getPageCount()) {
+            page = 1;
+        }
+    }
+   
 
     //CRUD işlemleri
     public String create() {
@@ -32,7 +71,7 @@ public class PersonelBean implements Serializable {
     }
 
     public List<Personel> getRead() {
-        return this.getDao().read();
+        return this.getDao().read(page);
     }
 
     public String updateForm(Personel i) {

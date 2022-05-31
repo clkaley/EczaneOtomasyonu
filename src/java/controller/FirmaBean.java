@@ -3,6 +3,7 @@ package controller;
 
 import dao.FirmaDAO;
 import entity.Firma;
+import entity.Hasta;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
@@ -20,7 +21,42 @@ public class FirmaBean implements Serializable {
     private FirmaDAO dao;
     private Firma entity;
     
-  
+     private int page = 1;
+    private int pageCount = 0;
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageCount() {
+        List<Firma> hastaList = this.getDao().read();
+        int size = hastaList.size();
+        pageCount = (int) Math.ceil(size / 5);
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+    
+    
+    public void prev() {
+        page--;
+        if(page < 1) {
+            page = this.getPageCount();
+        }
+    }
+    
+    public void next() {
+        page++;
+        if(page > this.getPageCount()) {
+            page = 1;
+        }
+    }
 
     //CRUD işlemleri
     public String create(){
@@ -31,7 +67,7 @@ public class FirmaBean implements Serializable {
     }
     
     public List<Firma> getRead() {
-        return this.getDao().read();
+        return this.getDao().read(page);
     }
     public String updateForm(Firma i) {
         this.entity = i;

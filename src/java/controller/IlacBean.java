@@ -26,6 +26,44 @@ public class IlacBean implements Serializable {
     private IlacDAO dao;
     private Ilac entity;
     
+    private int page = 1;
+    private int pageCount = 0;
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageCount() {
+        List<Ilac> hastaList = this.getDao().read();
+        int size = hastaList.size();
+        pageCount = (int) Math.ceil(size / 5);
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+    
+    
+    public void prev() {
+        page--;
+        if(page < 1) {
+            page = this.getPageCount();
+        }
+    }
+    
+    public void next() {
+        page++;
+        if(page > this.getPageCount()) {
+            page = 1;
+        }
+    }
+   
+    
 
     //CRUD
     
@@ -39,7 +77,7 @@ public class IlacBean implements Serializable {
         return this.getDao().getById(id);
     }
     public List<Ilac> getRead() {
-        return this.getDao().read();
+        return this.getDao().read(page);
     }
     public String updateForm(Ilac i) {
         this.entity = i;
@@ -48,6 +86,7 @@ public class IlacBean implements Serializable {
     
     public String update() {
          this.getDao().update(entity);
+         this.entity = new Ilac();
         return "/ilac/list";
     }
     

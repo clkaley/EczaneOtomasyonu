@@ -2,6 +2,7 @@
 package controller;
 
 import dao.OdemeDAO;
+import entity.Ilac;
 import entity.Odeme;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
@@ -17,6 +18,44 @@ public class OdemeBean implements Serializable {
     private OdemeDAO dao;
     private Odeme entity;
     
+        private int page = 1;
+    private int pageCount = 0;
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPageCount() {
+        List<Odeme> hastaList = this.getDao().read();
+        int size = hastaList.size();
+        pageCount = (int) Math.ceil(size / 5);
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+    
+    
+    public void prev() {
+        page--;
+        if(page < 1) {
+            page = this.getPageCount();
+        }
+    }
+    
+    public void next() {
+        page++;
+        if(page > this.getPageCount()) {
+            page = 1;
+        }
+    }
+   
+    
    
     //CRUD
     public String create() {
@@ -27,7 +66,7 @@ public class OdemeBean implements Serializable {
     }
 
     public List<Odeme> getRead() {
-        return this.getDao().read();
+        return this.getDao().read(page);
     }
 
     public String updateForm(Odeme i) {

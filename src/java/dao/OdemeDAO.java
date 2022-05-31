@@ -64,6 +64,26 @@ public class OdemeDAO extends DBConnection {
         }
         return list;
     }
+     public List<Odeme> read(int page) {
+        List<Odeme> list = new ArrayList<>();
+          int offset = (page-1)*5;
+        try {
+            Statement st = this.connect().createStatement();
+            String query = "select * from odeme limit 5 offset " + offset;
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                Odeme tmp = new Odeme(rs.getInt("odeme_id"), rs.getString("odeme_toplam"), rs.getString("odeme_turu"), this.getOdemeFirma(rs.getInt("odeme_id")), rs.getTimestamp("created"));
+                //i eklencek
+                list.add(tmp);
+            }
+            st.close();
+            rs.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
 
     public List<Firma> getOdemeFirma(int odemeId) {
         List<Firma> list = new ArrayList<>();

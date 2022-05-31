@@ -41,6 +41,12 @@
                         </div>
                     </h:column>
                 </h:dataTable>
+                <hr />
+                <h6>Page: #{ilacBean.page}/#{ilacBean.pageCount}</h6>
+                <div class="btn-group" role="group" >
+                    <h:commandButton styleClass="btn btn-outline-primary" action="#{ilacBean.prev()}" value="GERI"/>
+                    <h:commandButton styleClass="btn btn-outline-secondary" action="#{ilacBean.next()}" value="ILERI"/>
+                </div>
             </h:form>
         </div>
         </ui:define> 

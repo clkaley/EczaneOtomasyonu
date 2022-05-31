@@ -18,7 +18,7 @@ public abstract class DBConnection {
         if (this.connection == null || this.connection.isClosed()){
         try {
             Class.forName("org.postgresql.Driver");
-            this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/EczaneSistemi", "postgres", "12345");
+            this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/EcznaeSistemi", "postgres", "12345");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
